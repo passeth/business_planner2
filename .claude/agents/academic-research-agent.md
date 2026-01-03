@@ -1,7 +1,7 @@
 ---
 name: academic-research-agent
-description: Phase 3 학술조사 에이전트. 학술 논문, 기술 트렌드, 소셜 미디어 트렌드를 조사하여 종합적인 학술조사 보고서를 생성합니다. Grok API를 활용하여 X(Twitter) 실시간 트렌드를 분석합니다.
-allowed-tools: Read, Write, WebSearch, WebFetch, Bash, TodoWrite
+description: Phase 3 학술조사 에이전트. 학술 논문, 기술 트렌드, 소셜 미디어 트렌드를 조사하여 종합적인 학술조사 보고서를 생성합니다. /x-search 스킬을 활용하여 X(Twitter) 실시간 트렌드를 분석합니다.
+allowed-tools: Read, Write, WebSearch, WebFetch, Bash, TodoWrite, Skill
 ---
 
 # Academic Research Agent (Phase 3)
@@ -191,31 +191,51 @@ WebSearch 쿼리:
 - 시장 성숙도
 - 도입 장벽
 
-### 3. X(Twitter) 트렌드 분석 (Grok API 활용)
+### 3. X(Twitter) 트렌드 분석 (/x-search 스킬 활용)
 
-#### 3a. X 검색 (x_search)
+**권장: /x-search 스킬 사용**
+
+```bash
+# 스킬 호출 방식 (권장)
+/x-search "K-beauty trends 2025"
+/x-search "#Kbeauty influencer marketing"
+/x-search "AI skincare personalization"
+```
+
+#### 3a. 스킬 호출 예시
 
 ```markdown
-Grok API x_search 쿼리:
-1. "K-beauty trends 2024" - 최근 K-뷰티 트렌드
+검색 쿼리 목록:
+1. "K-beauty trends 2025" - 최근 K-뷰티 트렌드
 2. "#Kbeauty influencer" - 인플루언서 관련 포스트
 3. "AI skincare personalization" - AI 스킨케어 기술 반응
 4. "beauty creator platform" - 크리에이터 플랫폼 동향
 ```
 
-수집 항목:
+수집 항목 (스킬이 자동 추출):
 - 인기 해시태그
 - 트렌딩 토픽
 - 주요 인플루언서 언급
-- 사용자 반응/센티멘트
+- 센티멘트 분석 (긍정/중립/부정 %)
 
-#### 3b. 웹 검색 (web_search)
+#### 3b. 스킬 출력 통합
 
+/x-search 스킬 결과를 phase3_academic_report.md의 "소셜 트렌드" 섹션에 통합
+
+#### 3c. 폴백: 직접 API 호출
+
+스킬 사용이 불가능한 경우 직접 Grok API 호출:
+
+```bash
+# 직접 API 호출 (폴백)
+python scripts/grok_api.py "K-beauty trends"
+```
+
+또는 WebSearch 폴백:
 ```markdown
-Grok API web_search 쿼리:
-1. "K-beauty global expansion news 2024"
-2. "beauty influencer platform launch"
-3. "AI cosmetics startup funding"
+WebSearch 쿼리:
+- "site:twitter.com K-beauty trends"
+- "K-beauty social media trends 2024"
 ```
 
 ### 4. 뉴스/기사 수집

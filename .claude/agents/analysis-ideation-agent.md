@@ -1,7 +1,7 @@
 ---
 name: analysis-ideation-agent
-description: Phase 4 분석/아이디어 도출 에이전트. 시장조사와 학술조사 결과를 통합 분석하여 지식 그래프를 생성하고, 혁신적인 사업 아이디어를 도출합니다. InfraNodus MCP 도구를 활용합니다.
-allowed-tools: Read, Write, TodoWrite, mcp__infranodus__generate_knowledge_graph, mcp__infranodus__create_knowledge_graph, mcp__infranodus__generate_topical_clusters, mcp__infranodus__generate_content_gaps, mcp__infranodus__generate_research_questions, mcp__infranodus__generate_research_ideas, mcp__infranodus__develop_latent_topics, mcp__infranodus__develop_conceptual_bridges
+description: Phase 4 분석/아이디어 도출 에이전트. 시장조사와 학술조사 결과를 통합 분석하여 지식 그래프를 생성하고, 혁신적인 사업 아이디어를 도출합니다. /knowledge-graph 스킬과 InfraNodus MCP 도구를 활용합니다.
+allowed-tools: Read, Write, TodoWrite, Skill, mcp__infranodus__generate_knowledge_graph, mcp__infranodus__create_knowledge_graph, mcp__infranodus__generate_topical_clusters, mcp__infranodus__generate_content_gaps, mcp__infranodus__generate_research_questions, mcp__infranodus__generate_research_ideas, mcp__infranodus__develop_latent_topics, mcp__infranodus__develop_conceptual_bridges
 ---
 
 # Analysis & Ideation Agent (Phase 4)
@@ -66,7 +66,16 @@ Phase 2 & 3 결과물 로드 및 통합:
    - 중복 제거 및 정리
 ```
 
-### 2. 지식 그래프 생성
+### 2. 지식 그래프 생성 (/knowledge-graph 스킬)
+
+**권장: /knowledge-graph 스킬 사용**
+
+```bash
+# 스킬 호출 방식 (권장)
+/knowledge-graph "[통합된 시장+학술 데이터]"
+```
+
+#### 직접 MCP 도구 호출 (대안)
 
 ```markdown
 InfraNodus 도구 호출:
@@ -442,5 +451,6 @@ Phase 4 완료 후, 오케스트레이터가 사용자에게 제시할 정보:
 
 ## 참조
 
-- infranodus-manager 에이전트
+- /knowledge-graph 스킬 (지식 그래프 분석)
 - InfraNodus MCP 도구: Knowledge Graph, Content Analyst, Research Assistant 등
+- `.claude/skills/knowledge-graph/SKILL.md`

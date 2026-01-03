@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/mcp-schema.json",
+  "mcpServers": {
+    "infranodus": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-infranodus"],
+      "env": {
+        "INFRANODUS_API_KEY": "${INFRANODUS_API_KEY}"
+      }
+    }
+  }
+}

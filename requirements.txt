@@ -1,0 +1,8 @@
+# Business Plan Generator v2.0 Dependencies
+
+# Grok API
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Optional: XAI Official SDK (if available)
+# xai-sdk>=0.1.0

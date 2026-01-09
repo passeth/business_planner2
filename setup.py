@@ -6,15 +6,19 @@ Business Plan Generator v2.0 - Interactive Setup Script
 
 import os
 import sys
+import io
 from pathlib import Path
 
-# 색상 코드 (Windows 호환)
-def init_colors():
-    """Windows 콘솔 색상 지원 활성화"""
+# Windows 콘솔 UTF-8 설정
+def init_console():
+    """Windows 콘솔 설정 초기화"""
     if sys.platform == "win32":
-        os.system("")  # Windows ANSI 활성화
+        os.system("")  # Windows ANSI 색상 활성화
+        # UTF-8 출력 설정
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
-init_colors()
+init_console()
 
 # ANSI 색상
 GREEN = "\033[92m"
